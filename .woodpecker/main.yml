@@ -30,7 +30,8 @@ steps:
       - cd gh-pages
       - touch .nojekyll
       - git add .
-      - git commit -m "deploy web: $$(date -u +'%Y-%m-%dT%H:%M:%SZ')" || true
+      - >-
+        git commit -m "deploy web: $$(date -u +'%Y-%m-%dT%H:%M:%SZ')" || true
       - git push "https://$GH_TOKEN@$${GH_REPO}" gh-pages
 
     when:
