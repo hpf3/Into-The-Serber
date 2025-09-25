@@ -1,3 +1,4 @@
+[![status-badge](https://woodpecker.riftwalkerdev.com/api/badges/5/status.svg)](https://woodpecker.riftwalkerdev.com/repos/5)
 # Into The Serber (Title WIP)
 
 The serber is in trouble and it is your job to dive into the virtual world and save it, find minawans along your journey and use their powers to fight off the hords of enemies and travel deeper into the serber.
