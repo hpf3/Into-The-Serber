@@ -3,6 +3,8 @@
 
 The serber is in trouble and it is your job to dive into the virtual world and save it, find minawans along your journey and use their powers to fight off the hords of enemies and travel deeper into the serber.
 
+try the latest build at https://hpf3.github.io/Into-The-Serber/
+
 ## Development Workflow (VS Code)
 - Open the folder in VS Code and use `Terminal → Run Task…` → `download-godot` to fetch the matching editor and export templates. The script currently targets Linux (`Godot_v4.5-stable_linux.x86_64`);
 - Launch the project via the built-in run configurations (`Run and Debug` panel):
