@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "download-godot",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/scripts/get_engine.sh",
+            "args": [
+                "--download-only"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "silent",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "export-web",
+            "type": "shell",
+            "dependsOn": "download-godot",
+            "command": "bash",
+            "args": [
+                "-lc",
+                "GODOT_BIN=\"${workspaceFolder}/.godot/Godot_v4.5-stable_linux.x86_64\" ./.woodpecker/scripts/build_web.sh"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+    ]
+}

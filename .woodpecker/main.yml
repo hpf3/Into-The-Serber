@@ -1,0 +1,39 @@
+when:
+  event: [ push, manual, tag ]
+
+steps:
+  export-web:
+    image: ghcr.io/hpf3/godotweb:4.5
+    environment:
+      GODOT_USER_HOME: /root/.local/share/godot
+      # GODOT_PRESET: "single"
+    commands:
+      - chmod +x ./.woodpecker/scripts/build_web.sh
+      - ./.woodpecker/scripts/build_web.sh
+
+  deploy-gh-pages:
+    image: alpine/git:latest
+    environment:
+      GH_TOKEN:
+        from_secret: GH_TOKEN
+      GH_REPO: "github.com/${CI_REPO_OWNER}/${CI_REPO_NAME}.git"
+    commands:
+      - git config --global user.email "ci@users.noreply.github.com"
+      - git config --global user.name "woodpecker-ci"
+
+      # clone or init gh-pages
+      - git clone --depth 1 --branch gh-pages "https://$GH_TOKEN@$${GH_REPO}" gh-pages || (mkdir gh-pages && cd gh-pages && git init && git checkout -b gh-pages && cd -)
+
+      # publish the built site from the shared workspace
+      - rm -rf gh-pages/*
+      - cp -r build/web/* gh-pages/
+      - cd gh-pages
+      - touch .nojekyll
+      - git add .
+      - git commit -m "deploy web: $$(date -u +'%Y-%m-%dT%H:%M:%SZ')" || true
+      - git push "https://$GH_TOKEN@$${GH_REPO}" gh-pages
+
+    when:
+      event: [ push, tag ]
+      branch:
+        include: [ main ]
