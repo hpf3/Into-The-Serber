@@ -6,8 +6,8 @@ var bus: SignalBus
 var host: Node
 
 func _ready() -> void:
-    host = get_owner()
-    bus = host.get_node_or_null("SignalBus")
+    bus = _find_signal_bus(self)
+    host = bus.get_parent() if bus else null
     assert(bus, "SignalBus not found on NPC")
 
     _on_attached()
@@ -29,3 +29,21 @@ func _connect_if(sig: StringName, method: StringName) -> void:
         bus.connect(sig, Callable(self, method))
     else:
         push_warning("Method '%s' not found in %s, cannot connect to signal '%s'." % [method, self, sig])
+
+
+
+func _find_signal_bus(start: Node) -> SignalBus:
+    var current := start
+    while current:
+        var parent := current.get_parent()
+        if parent == null:
+            return null
+        for sibling in parent.get_children():
+            if sibling == current:
+                continue
+            if sibling is SignalBus:
+                return sibling
+        if parent is CharacterBody2D:
+            return null
+        current = parent
+    return null

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgg2i63mtrbca"]
+[gd_scene load_steps=6 format=3 uid="uid://dgg2i63mtrbca"]
 
 [ext_resource type="Script" uid="uid://cq3y87aem8lr7" path="res://scripts/core/player.gd" id="1_kr2ts"]
+[ext_resource type="Script" uid="uid://cg7lyac8uboyy" path="res://scripts/core/abilities/debug/damage_click.gd" id="2_q88xf"]
 [ext_resource type="Script" uid="uid://bfolm0vtxxqrs" path="res://scripts/core/stats.gd" id="3_q88xf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kr2ts"]
@@ -19,6 +20,9 @@ unique_name_in_owner = true
 
 [node name="Primary" type="Node" parent="Abilities"]
 unique_name_in_owner = true
+
+[node name="damage_click" type="Node" parent="Abilities/Primary"]
+script = ExtResource("2_q88xf")
 
 [node name="Secondary" type="Node" parent="Abilities"]
 unique_name_in_owner = true
