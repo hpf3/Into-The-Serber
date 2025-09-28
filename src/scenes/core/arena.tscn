@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://cb0n48jr5uir8"]
+[gd_scene load_steps=4 format=4 uid="uid://cb0n48jr5uir8"]
 
 [ext_resource type="TileSet" uid="uid://s1myb3d4ber2" path="res://art/dawngeon.tres" id="1_arv3i"]
 [ext_resource type="PackedScene" uid="uid://dgg2i63mtrbca" path="res://scenes/core/player.tscn" id="2_h62ic"]
+[ext_resource type="PackedScene" uid="uid://p46kfnk2cru5" path="res://scenes/core/npc/dummy.tscn" id="3_yvung"]
 
 [node name="Arena" type="Node2D"]
 
@@ -17,3 +18,6 @@ tile_set = ExtResource("1_arv3i")
 
 [node name="Camera2D" type="Camera2D" parent="Map/Player"]
 zoom = Vector2(2, 2)
+
+[node name="Dummy" parent="Map" instance=ExtResource("3_yvung")]
+position = Vector2(-57, -60)

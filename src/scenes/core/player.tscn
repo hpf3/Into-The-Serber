@@ -10,9 +10,9 @@ size = Vector2(16, 16)
 size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_kr2ts")
-friction = 1200.0
 
 [node name="Abilities" type="Node" parent="."]
 unique_name_in_owner = true

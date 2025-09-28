@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://p46kfnk2cru5"]
+
+[ext_resource type="Script" uid="uid://75ty6045e420" path="res://scripts/core/npc/signalbus.gd" id="1_uirxw"]
+[ext_resource type="Script" uid="uid://7cuylxal3r7b" path="res://scripts/core/npc/capabilities/health.gd" id="2_q1q1y"]
+[ext_resource type="Texture2D" uid="uid://bj6pnnej6c652" path="res://art/dummytopdown.png" id="3_u5btm"]
+[ext_resource type="Script" uid="uid://y7xntyqrsxj2" path="res://scripts/core/npc/capabilities/damage_logger.gd" id="3_xfio2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1q1y"]
+size = Vector2(16, 16)
+
+[node name="Dummy" type="CharacterBody2D"]
+collision_layer = 4
+
+[node name="SignalBus" type="Node" parent="."]
+script = ExtResource("1_uirxw")
+metadata/_custom_type_script = "uid://75ty6045e420"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q1q1y")
+
+[node name="Capabilities" type="Node" parent="."]
+
+[node name="health" type="Node" parent="Capabilities"]
+script = ExtResource("2_q1q1y")
+
+[node name="logger" type="Node" parent="Capabilities"]
+script = ExtResource("3_xfio2")
+log_name = "Dummy"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_u5btm")
