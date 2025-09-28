@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgg2i63mtrbca"]
+
+[ext_resource type="Script" uid="uid://cq3y87aem8lr7" path="res://scripts/core/player.gd" id="1_kr2ts"]
+[ext_resource type="Script" uid="uid://bfolm0vtxxqrs" path="res://scripts/core/stats.gd" id="3_q88xf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kr2ts"]
+size = Vector2(16, 16)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kr2ts"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_kr2ts")
+friction = 1200.0
+
+[node name="Abilities" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Primary" type="Node" parent="Abilities"]
+unique_name_in_owner = true
+
+[node name="Secondary" type="Node" parent="Abilities"]
+unique_name_in_owner = true
+
+[node name="Passive" type="Node" parent="Abilities"]
+unique_name_in_owner = true
+
+[node name="Dash" type="Node" parent="Abilities"]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kr2ts")
+
+[node name="Image" type="Sprite2D" parent="CollisionShape2D"]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = SubResource("PlaceholderTexture2D_kr2ts")
+
+[node name="Stats" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_q88xf")
+base_dict = {
+0: 220.0,
+1: 100.0,
+2: 1.0,
+3: 10.0,
+4: 0.0,
+5: 0.0,
+6: 0.0
+}

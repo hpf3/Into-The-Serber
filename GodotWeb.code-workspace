@@ -5,6 +5,8 @@
 		}
 	],
 	"settings": {
-		"vs-browser.url": "http://localhost:8000"
+		"vs-browser.url": "http://localhost:8000",
+		"godotTools.editorPath.godot4": ".vscode/scripts/get_engine.sh",
+		"godotTools.scenePreview.previewRelatedScenes": "anyFolder"
 	}
 }

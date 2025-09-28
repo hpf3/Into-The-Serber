@@ -22,7 +22,7 @@ This living document tracks who built what. Update it whenever you add or change
 ## Art & Visual Assets
 | Name | Handle / Link | Asset(s) | License / Permission |
 | --- | --- | --- | --- |
-
+|HeDeWan|https://github.com/HeDeAnTheonlyone/minacare_zig|Pixel-Cerber|Got permission for use on da discord|
 
 ## Audio & Music
 | Name | Handle / Link | Asset(s) | License / Permission |
