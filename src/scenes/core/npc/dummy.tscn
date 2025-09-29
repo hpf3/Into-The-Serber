@@ -23,6 +23,7 @@ shape = SubResource("RectangleShape2D_q1q1y")
 
 [node name="health" type="Node" parent="Capabilities"]
 script = ExtResource("2_q1q1y")
+max_health = 1000.0
 
 [node name="logger" type="Node" parent="Capabilities"]
 script = ExtResource("3_xfio2")

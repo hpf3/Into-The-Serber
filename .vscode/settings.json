@@ -14,5 +14,8 @@
     },
     "files.watcherExclude": {
         "**/.godot/**": true
-    }
+    },
+    "discord.detailsDebugging": "Debugging a Game",
+    "discord.detailsEditing": "Editing a file",
+    "discord.enabled": true
 }

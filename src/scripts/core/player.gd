@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @onready var stats: Stats = $%Stats
+@onready var aim_controller: PlayerAimController = $%PlayerAimController
 # Mark Abilities/Primary/Secondary/Passive as "Unique Name in Owner" in the editor.
 @export() var sprite_frames: CompressedTexture2DArray = preload("res://art/characters_spritesheet.png")
 @export var movement: PlayerMovement = PlayerMovement.new()
@@ -27,14 +28,11 @@ func _physics_process(delta: float) -> void:
 #region Abilities
 
 func _process_abilities() -> void:
-	var state := PlayerContext.new()
-	state.player = self
-	state.stats = stats
-	state.velocity = velocity
+	var state := PlayerContext.new_from_player(self, stats, velocity, aim_controller.get_aim_direction())
 
-	if Input.is_action_just_pressed("ability_primary"):
+	if Input.is_action_pressed("ability_primary"):
 		_trigger_folder("%Primary", state)
-	if Input.is_action_just_pressed("ability_secondary"):
+	if Input.is_action_pressed("ability_secondary"):
 		_trigger_folder("%Secondary", state)
 	if Input.is_action_just_pressed("ability_dash"):
 		_trigger_folder("%Dash", state)
@@ -46,10 +44,8 @@ func _trigger_folder(unique_path: String, state: PlayerContext) -> void:
 	var abilities := _collect_abilities(folder)
 	for a: Ability in abilities:
 		if a.can_trigger(state):
-			var pre := a.get_cooldown_left()
+			_log_verbose("Triggering ability: %s" % a.name)
 			a.trigger(state)
-			if pre <= 0.0 and a.get_cooldown_left() <= 0.0 and a.get_cooldown() > 0.0:
-				a.start_cooldown()
 
 func _collect_abilities(root: Node) -> Array[Ability]:
 	var out: Array[Ability] = []
@@ -122,3 +118,8 @@ func _assertions() -> void:
 	assert((get_node_or_null("%Stats") as Stats) != null, "%Stats is missing or not a Stats node")
 	assert(sprite_frames != null and sprite_frames.get_layers() == 3, "Player sprite_frames not set up")
 	assert((get_node_or_null("%Image") as Sprite2D) != null, "Missing %Sprite2D under Player")
+
+
+func _log_verbose(msg: String) -> void:
+	if OS.is_debug_build():
+		print("[Player]: %s" % msg)

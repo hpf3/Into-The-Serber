@@ -11,6 +11,10 @@ func emit_tick(delta: float) -> void: emit_signal("tick", delta)
 signal hit(amount: float, source: Node)
 func emit_hit(amount: float, source: Node) -> void: emit_signal("hit", amount, source)
 
+signal knockback(strength: float, direction: Vector2)
+func emit_knockback(strength: float, direction: Vector2) -> void:
+    emit_signal("knockback", strength, direction)
+
 signal damaged(amount: float, hp_cur: float, hp_max: float, source: Node)
 func emit_damaged(amount: float, hp_cur: float, hp_max: float, source: Node) -> void:
     emit_signal("damaged", amount, hp_cur, hp_max, source)

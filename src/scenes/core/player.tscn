@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgg2i63mtrbca"]
+[gd_scene load_steps=9 format=3 uid="uid://dgg2i63mtrbca"]
 
 [ext_resource type="Script" uid="uid://cq3y87aem8lr7" path="res://scripts/core/player.gd" id="1_kr2ts"]
 [ext_resource type="Script" uid="uid://cg7lyac8uboyy" path="res://scripts/core/abilities/debug/damage_click.gd" id="2_q88xf"]
+[ext_resource type="Script" uid="uid://dwyu62aipy2gn" path="res://scripts/core/abilities/basic/basic_strike.gd" id="2_wfwb4"]
 [ext_resource type="Script" uid="uid://bfolm0vtxxqrs" path="res://scripts/core/stats.gd" id="3_q88xf"]
+[ext_resource type="Script" uid="uid://bkg8djbuynq1x" path="res://scripts/core/player_aim_controller.gd" id="4_kmdga"]
+[ext_resource type="Texture2D" uid="uid://cw6hf6r2ayxcw" path="res://art/Pure_20.png" id="5_wfwb4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kr2ts"]
 size = Vector2(16, 16)
@@ -21,11 +24,15 @@ unique_name_in_owner = true
 [node name="Primary" type="Node" parent="Abilities"]
 unique_name_in_owner = true
 
-[node name="damage_click" type="Node" parent="Abilities/Primary"]
-script = ExtResource("2_q88xf")
+[node name="basic_strike" type="Node" parent="Abilities/Primary"]
+script = ExtResource("2_wfwb4")
+damage = 1.0
 
 [node name="Secondary" type="Node" parent="Abilities"]
 unique_name_in_owner = true
+
+[node name="damage_click" type="Node" parent="Abilities/Secondary"]
+script = ExtResource("2_q88xf")
 
 [node name="Passive" type="Node" parent="Abilities"]
 unique_name_in_owner = true
@@ -35,11 +42,6 @@ unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kr2ts")
-
-[node name="Image" type="Sprite2D" parent="CollisionShape2D"]
-unique_name_in_owner = true
-scale = Vector2(0.5, 0.5)
-texture = SubResource("PlaceholderTexture2D_kr2ts")
 
 [node name="Stats" type="Node" parent="."]
 unique_name_in_owner = true
@@ -53,3 +55,19 @@ base_dict = {
 5: 0.0,
 6: 0.0
 }
+
+[node name="PlayerAimController" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_kmdga")
+metadata/_custom_type_script = "uid://bkg8djbuynq1x"
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerAimController"]
+texture_filter = 2
+position = Vector2(10, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_wfwb4")
+
+[node name="Image" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = SubResource("PlaceholderTexture2D_kr2ts")
